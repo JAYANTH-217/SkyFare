@@ -2,6 +2,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import joblib
 import pickle
 from pathlib import Path
 from html import escape
@@ -21,8 +22,7 @@ folder = Path(__file__).parent
 @st.cache_resource
 def load_files():
 
-    with open(folder / "flight_model.pkl", "rb") as file:
-        model = pickle.load(file)
+    model = joblib.load(folder / "flight_model_c.pkl")
 
     with open(folder / "onehot_encoder.pkl", "rb") as file:
         OHE = pickle.load(file)
